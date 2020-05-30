@@ -2,15 +2,15 @@ import React from 'react';
 import './App.css';
 
 const audioLibrary = [
-  {id: 'Q', src: 'https://drive.google.com/uc?id=1qrlRnCILeRs6g3Fq_wth5GDlnkAZHFT0', description: 'Random Sound Q'},
-  {id: 'W', src: 'https://drive.google.com/uc?id=1lx_baWh3-8eAIlmomvLjKOCU3CymYf6r', description: 'Random Sound Q'},
-  {id: 'E', src: 'https://drive.google.com/uc?id=1cj0L6P1uuyMq0ibd6poVEhbl0z1PljGa', description: 'Random Sound Q'},
-  {id: 'A', src: 'https://drive.google.com/uc?id=1TvAItnGbdPP_2u0UVkZ2hgIvWVFx4Oov', description: 'Random Sound Q'},
-  {id: 'S', src: 'https://drive.google.com/uc?id=13EgFr2GxTmdTXtXw61pMrT7ggYIKEu7A', description: 'Random Sound Q'},
-  {id: 'D', src: 'https://drive.google.com/uc?id=1HyFxnIdMHDji5Wk0GZgiCpZNb3cpujZ-', description: 'Random Sound Q'},
-  {id: 'Z', src: 'https://drive.google.com/uc?id=134GG_8HCUuykBkp2rl6YPdqwSBxEDKRL', description: 'Random Sound Q'},
-  {id: 'X', src: 'https://drive.google.com/uc?id=1JnO8rEYgmAJjruY0spCDj3qBBED3-T8M', description: 'Random Sound Q'},
-  {id: 'C', src: 'https://drive.google.com/uc?id=1d-Qx7nOaQgijsT5eg_rZYc1d6JTMVF9o', description: 'Random Sound Q'}
+  {id: 'Q', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3', description: 'Random Sound Q'},
+  {id: 'W', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3', description: 'Random Sound W'},
+  {id: 'E', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3', description: 'Random Sound E'},
+  {id: 'A', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3', description: 'Random Sound A'},
+  {id: 'S', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3', description: 'Random Sound S'},
+  {id: 'D', src: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3', description: 'Random Sound D'},
+  {id: 'Z', src: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3', description: 'Random Sound Z'},
+  {id: 'X', src: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3', description: 'Random Sound X'},
+  {id: 'C', src: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3  ', description: 'Random Sound C'}
 ]
 
 export default function App() {
@@ -21,24 +21,29 @@ export default function App() {
         <div id='display'>
           {display}
         </div>
-        {audioLibrary.map((audio) => 
-          <Pad key={audio.id} id={audio.id} src={audio.src} updateDisplay={(content) => setDisplay(content)} />
+        {audioLibrary.map((audio) => {
+          const { id, src, description } = audio
+          return (
+            <Pad key={id} id={id} src={src} description={description} updateDisplay={(value) => setDisplay(value)} />
+          )
+        }
         )}
       </div>
     </div>
   );
 }
 
-function Pad({id, src, updateDisplay}){
+function Pad({id, src, description, updateDisplay}){
   const handleClick = () => {
     let audio = document.getElementById(id)
     audio.play()
+    updateDisplay(description)
   }
   const handleKeyDown = (event) => {
     event.preventDefault()
+    console.log(description)
     if(event.key === id || event.key === id.toLowerCase()){
       handleClick()
-      updateDisplay('Playing'+id)
     }
   }
 
@@ -47,7 +52,7 @@ function Pad({id, src, updateDisplay}){
     return () => {
       document.removeEventListener('keydown', handleKeyDown, false)
     }
-  }, [])
+  },[])
 
   return(
     <button className='drum-pad' id={`drum-${id}`} onClick={handleClick} onKeyDown={(event) => handleKeyDown(event)}>
