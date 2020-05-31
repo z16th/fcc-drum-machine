@@ -21,13 +21,15 @@ export default function App() {
         <div id='display'>
           {display}
         </div>
-        {audioLibrary.map((audio) => {
-          const { id, src, description } = audio
-          return (
-            <Pad key={id} id={id} src={src} description={description} updateDisplay={(value) => setDisplay(value)} />
-          )
-        }
-        )}
+
+        <div className='drums'>
+          {audioLibrary.map((audio) => {
+            const { id, src, description } = audio
+            return (
+              <Pad key={id} id={id} src={src} description={description} updateDisplay={(value) => setDisplay(value)} />
+            )}
+          )}
+        </div>
       </div>
     </div>
   );
