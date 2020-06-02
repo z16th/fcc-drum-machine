@@ -19,6 +19,7 @@ export default function App() {
     <div className='app'>
       <div id='drum-machine'>
         <div id='display'>
+          <img src='./utils/logo.png' alt="LoLz Logo"/>
           {display}
         </div>
 
