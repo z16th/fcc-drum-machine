@@ -2,15 +2,15 @@ import React from 'react';
 import './App.css';
 
 const audioLibrary = [
-  {id: 'Q', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3', description: 'Random Sound Q'},
-  {id: 'W', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3', description: 'Random Sound W'},
-  {id: 'E', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3', description: 'Random Sound E'},
-  {id: 'A', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3', description: 'Random Sound A'},
-  {id: 'S', src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3', description: 'Random Sound S'},
-  {id: 'D', src: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3', description: 'Random Sound D'},
-  {id: 'Z', src: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3', description: 'Random Sound Z'},
-  {id: 'X', src: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3', description: 'Random Sound X'},
-  {id: 'C', src: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3  ', description: 'Random Sound C'}
+  {id: 'Q', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Clap.wav', description: 'Clap'},
+  {id: 'W', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Conga.wav', description: 'Conga'},
+  {id: 'E', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Cymbal.wav', description: 'Cymbal'},
+  {id: 'A', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/HiHat.wav', description: 'HiHat'},
+  {id: 'S', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Kick.wav', description: 'Kick'},
+  {id: 'D', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Ride.wav', description: 'Ride'},
+  {id: 'Z', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Stick.wav', description: 'Stick'},
+  {id: 'X', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Tom.wav', description: 'Tom'},
+  {id: 'C', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Shaker.wav', description: 'Shaker'}
 ]
 
 export default function App() {
@@ -38,6 +38,7 @@ export default function App() {
 function Pad({id, src, description, updateDisplay}){
   const handleClick = () => {
     let audio = document.getElementById(id)
+    audio.volume = 0.5;
     audio.play()
     updateDisplay(description)
   }
@@ -57,9 +58,9 @@ function Pad({id, src, description, updateDisplay}){
   },[])
 
   return(
-    <button className='drum-pad' id={`drum-${id}`} onClick={handleClick} onKeyDown={(event) => handleKeyDown(event)}>
+    <div className='drum-pad' id={`drum-${id}`} onClick={handleClick} onKeyDown={(event) => handleKeyDown(event)}>
       {id}
       <audio className='clip' id={id} src={src} />
-    </button>
+    </div>
   )
 }
