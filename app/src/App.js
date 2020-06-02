@@ -41,6 +41,7 @@ function Pad({id, src, description, updateDisplay}){
   const handleClick = () => {
     let audio = document.getElementById(id)
     audio.volume = 0.5;
+    audio.currentTime = 0;
     audio.play()
     updateDisplay(description)
   }
