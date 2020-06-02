@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import logo from './utils/logo.png'
 
 const audioLibrary = [
   {id: 'Q', src: 'https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-drum-machine/Clap.wav', description: 'Clap'},
@@ -19,8 +20,8 @@ export default function App() {
     <div className='app'>
       <div id='drum-machine'>
         <div id='display'>
-          <img src='./utils/logo.png' alt="LoLz Logo"/>
-          {display}
+          <img id='logo' src={logo} alt="LoLz Logo"/>
+          <div id='text'>{display}</div>
         </div>
 
         <div className='drums'>
