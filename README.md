@@ -1,7 +1,7 @@
 # FCC - Drum Machine
 
 ![project-image](https://z16th-bucket.s3-us-west-1.amazonaws.com/fcc-projects/fcc-drum-machine-min.png)
-`Preview image`
+`_Preview image_`
 
 You can check the live version [here](https://xvi-lolz.github.io/fcc-drum-machine/)
 
